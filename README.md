@@ -8,7 +8,7 @@ starters下有很多实际使用的工具，我做了封装。
 joy-rate-limit   限流
 joy-xss-protect xss防护
 joy-lock-distribution 分布式锁
-joy-nats nats客户端框架
+joy-nats nats  客户端框架
 
 
 # 目录说明
