@@ -78,7 +78,11 @@
                 success: function () {
                     table.reload('userTable'); // 刷新表格
                     $('#userForm')[0].reset(); // 重置表单
+                    if (userId>0){
+                        $('#createUser').text('Create User');
+                    }
                     $('#userId').val(''); // 清空用户ID
+
                 },
                 error: function () {
                     alert("Error saving user");
@@ -90,9 +94,23 @@
         table.on('tool(userTableFilter)', function (obj) {
             var data = obj.data;
             if (obj.event === 'edit') {
-                $('#userId').val(data.id);
-                $('#name').val(data.name);
-                $('#email').val(data.email);
+                // 调用 GET 接口获取用户数据
+                $.ajax({
+                    type: "POST",
+                    url: "/users/getUserById?id="+data.id,
+                    success: function (response) {
+                        $('#userId').val(response.data.id);
+                        $('#name').val(response.data.name);
+                        $('#email').val(response.data.email);
+                        $('#createUser').text('Update User');
+                    },
+                    error: function () {
+                        alert("Error fetching user data");
+                    }
+                });
+
+
+
             } else if (obj.event === 'delete') {
                 $.ajax({
                     type: "POST",

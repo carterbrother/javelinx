@@ -32,13 +32,22 @@ dependencies {
 	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
 	implementation 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.alicp.jetcache:jetcache-starter-redis-springdata:2.7.7'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'com.esotericsoftware:kryo5:5.6.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+
+bootJar {
+	exclude 'spring-boot-devtools'
 }

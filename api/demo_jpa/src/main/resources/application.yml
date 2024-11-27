@@ -1,0 +1,93 @@
+hibernate:
+    dialect: org.hibernate.dialect.MySQLDialect
+jasypt:
+    encryptor:
+        password: 3435454Love#4
+
+spring:
+    devtools:
+        restart:
+            enabled: true
+    application:
+        name: demo_jpa
+    datasource:
+        password: ENC(qNiAx+qRKeJoCSfn4yfZ81ZIsuS+tfzm7QMxW1O9bwR5M/N3r4dZUshzfu6SqZzLTvbp3+fdj0SIjLznxFPbuQ==)
+        url: jdbc:mysql://47.119.173.229:43306/db_user?allowPublicKeyRetrieval=true&useSSL=false
+        username: carter.li
+        hikari:
+            connection-test-query: SELECT 1
+            idle-timeout: 30000
+            max-lifetime: 1800000
+            minimum-idle: 10
+            maximum-pool-size: 20
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                format_sql: true
+        show-sql: true
+    data:
+        redis:
+            host: 47.119.173.229
+            port: 46379
+            password: ENC(Y7K7pccklpyvlbv6UmXtiq2FGaAqjjK3uT4HAjqY0uanMJSMPrMrftQjTLxwuq+6vvtR9g5RrY701MPwCdfmyw==)
+            timeout: 3000ms
+            database: 0
+            poolConfig:
+                maxTotal: 100
+                maxIdle: 50
+                minIdle: 10
+                maxWaitMillis: 5000
+                softMinEvictableIdleTimeMillis: 10000
+                timeBetweenEvictionRunsMillis: 30000
+                numTestsPerEvictionRun: 10
+                testOnBorrow: true
+                testOnReturn: true
+                testWhileIdle: true
+                minEvictableIdleTimeMillis: 300000
+                blockWhenExhausted: true
+                lifo: true
+            client-name: ${spring.application.name}
+            commandTimeout: 30s
+            connectTimeout: 30s
+            soTimeout: 30s
+
+
+
+jetcache:
+    statIntervalMinutes: 15
+    areaInCacheName: false
+    local:
+        default:
+            type: caffeine
+            limit: 10000
+            keyConvertor: fastjson2
+            expireAfterWrite: 30m
+    remote:
+        default:
+            type: redis.springdata
+            redissonClient: redissonClient
+            keyConvertor: fastjson2
+            broadcastChannel: ${spring.application.name}
+            valueEncoder: kryo5
+            valueDecoder: kryo5
+            defaultExpire: 60m
+#            poolConfig:
+#                minIdle: 10
+#                maxIdle: 20
+#                maxTotal: 50
+
+
+
+
+#redisson:
+#    database: 0
+#    password: ENC(Y7K7pccklpyvlbv6UmXtiq2FGaAqjjK3uT4HAjqY0uanMJSMPrMrftQjTLxwuq+6vvtR9g5RrY701MPwCdfmyw==)
+#    address: redis://47.119.173.229:46379
+
+server:
+    tomcat:
+        max-threads: 500
+        min-spare-threads: 500
+        accept-count: 5000

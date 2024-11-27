@@ -1,0 +1,52 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.5'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.joysky.api'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+allprojects {
+	repositories {
+		maven {
+			url 'https://maven.aliyun.com/repository/public'
+		}
+		maven {
+			credentials {
+				username '5ef19dc897528f50b9d9487f'
+				password 'G(iknIWwYk-b'
+			}
+			url 'https://packages.aliyun.com/653cce943aaed849b035aa9f/maven/2428941-snapshot-gn7vys'
+		}
+	}
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.baomidou:mybatis-plus-boot-starter:3.5.9'
+	implementation 'mysql:mysql-connector-java:8.0.33'
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

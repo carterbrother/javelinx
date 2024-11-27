@@ -15,7 +15,9 @@ public class TestEnc {
         textEncryptor.setPassword(encryptionPassword);
 
         // 要加密的敏感信息
-        String sensitiveData = "jdbc:mysql://47.119.173.229:43306/db_user?allowPublicKeyRetrieval=true&useSSL=false"; // 需要加密的值
+//        String sensitiveData = "jdbc:mysql://47.119.173.229:43306/db_user?allowPublicKeyRetrieval=true&useSSL=false"; // 需要加密的值
+//        String sensitiveData = "Carter123!Abc2024"; // 需要加密的值
+        String sensitiveData = "redis_kfdmSPCarter"; // 需要加密的值
 
         // 加密
         String encryptedData = textEncryptor.encrypt(sensitiveData);

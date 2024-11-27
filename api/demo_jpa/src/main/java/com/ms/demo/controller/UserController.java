@@ -34,7 +34,7 @@ public class UserController {
         return new R<>(0, "成功", userPage.getTotalElements(), userPage.getContent());
     }
 
-    @PostMapping("/get") // 根据 ID 获取用户
+    @PostMapping("/getUserById") // 根据 ID 获取用户
     public R<User> getUserById(@RequestParam Long id) {
         User user = userService.getUserById(id);
         return new R<>(0, "成功", 1, user);
